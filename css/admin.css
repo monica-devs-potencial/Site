@@ -1,0 +1,422 @@
+/* ===================================================================
+   admin.css — Styles for the Flamengo super-admin panel
+   =================================================================== */
+
+:root {
+    --adm-bg:       #f0f4f8;
+    --adm-surface:  #ffffff;
+    --adm-border:   #d1d9e0;
+    --adm-teal:     #00a884;
+    --adm-teal-dk:  #008069;
+    --adm-danger:   #e53935;
+    --adm-muted:    #64748b;
+    --adm-text:     #1e293b;
+    --adm-radius:   8px;
+    --adm-shadow:   0 2px 8px rgba(0,0,0,.08);
+}
+
+/* ── Page layout ─────────────────────────────────────────────────── */
+.admin-page {
+    min-height: 100vh;
+    background: var(--adm-bg);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--adm-text);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+.admin-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .85rem 1.5rem;
+    background: var(--adm-teal-dk);
+    color: #fff;
+    flex-wrap: wrap;
+    box-shadow: var(--adm-shadow);
+}
+
+.admin-header-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.admin-header-sub {
+    font-size: .88rem;
+    opacity: .85;
+    flex: 1;
+}
+
+.admin-header-actions {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+}
+
+.admin-back-btn,
+.admin-logout-btn {
+    font-size: .82rem;
+    padding: .3rem .9rem;
+    border-color: rgba(255,255,255,.5) !important;
+    color: #fff !important;
+}
+.admin-back-btn:hover,
+.admin-logout-btn:hover { background: rgba(255,255,255,.15) !important; }
+
+/* ── Flash message ──────────────────────────────────────────────── */
+.admin-flash {
+    background: #dcfce7;
+    border-left: 4px solid var(--adm-teal);
+    color: #166534;
+    padding: .7rem 1.5rem;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+/* ── Main content ───────────────────────────────────────────────── */
+.admin-main {
+    padding: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Tabs ───────────────────────────────────────────────────────── */
+.admin-tabs {
+    display: flex;
+    gap: .35rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid var(--adm-border);
+    padding-bottom: .4rem;
+}
+
+.admin-tab {
+    padding: .45rem 1.1rem;
+    font-size: .86rem;
+    font-weight: 600;
+    border: 1.5px solid var(--adm-border);
+    border-radius: var(--adm-radius) var(--adm-radius) 0 0;
+    background: var(--adm-surface);
+    color: var(--adm-muted);
+    cursor: pointer;
+    transition: background .13s, color .13s, border-color .13s;
+    font-family: inherit;
+}
+.admin-tab:hover { background: #f8fafc; color: var(--adm-text); }
+.admin-tab.active {
+    background: var(--adm-teal);
+    border-color: var(--adm-teal);
+    color: #fff;
+}
+
+/* ── Table ──────────────────────────────────────────────────────── */
+.admin-section { overflow-x: auto; }
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .84rem;
+    background: var(--adm-surface);
+    border-radius: var(--adm-radius);
+    overflow: hidden;
+    box-shadow: var(--adm-shadow);
+}
+
+.admin-table th {
+    background: #f1f5f9;
+    padding: .6rem .85rem;
+    text-align: left;
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--adm-muted);
+    border-bottom: 1px solid var(--adm-border);
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: .55rem .85rem;
+    border-bottom: 1px solid var(--adm-border);
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: rgba(0,168,132,.04); }
+
+.row-deleted td { opacity: .5; }
+
+.admin-msg-content { max-width: 340px; }
+.msg-text { word-break: break-word; }
+
+.admin-actions-cell {
+    display: flex;
+    gap: .35rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-empty {
+    padding: 1.5rem;
+    color: var(--adm-muted);
+    font-size: .9rem;
+    text-align: center;
+}
+
+/* ── Inline forms (role toggle / delete) ─────────────────────────── */
+.admin-inline-form { display: inline-flex; }
+
+/* Role buttons */
+.btn-role {
+    font-size: .75rem;
+    padding: .2rem .65rem;
+    border-radius: 20px;
+    border: 1.5px solid;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: opacity .12s;
+}
+.btn-role:hover { opacity: .8; }
+
+.admin-role {
+    border-color: var(--adm-teal);
+    color: var(--adm-teal);
+    background: rgba(0,168,132,.08);
+}
+.user-role {
+    border-color: var(--adm-muted);
+    color: var(--adm-muted);
+    background: transparent;
+}
+
+.badge-superadmin {
+    font-size: .75rem;
+    font-weight: 700;
+    color: #92400e;
+    background: #fef3c7;
+    padding: .15rem .55rem;
+    border-radius: 20px;
+    border: 1px solid #fcd34d;
+}
+
+/* Danger delete button */
+.btn-danger-sm {
+    font-size: .75rem;
+    padding: .2rem .6rem;
+    border: 1.5px solid var(--adm-danger);
+    border-radius: var(--adm-radius);
+    color: var(--adm-danger);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background .12s;
+    white-space: nowrap;
+}
+.btn-danger-sm:hover { background: rgba(229,57,53,.1); }
+
+/* Edit button */
+.btn-edit-sm {
+    font-size: .75rem;
+    padding: .2rem .6rem;
+    border: 1.5px solid var(--adm-teal);
+    border-radius: var(--adm-radius);
+    color: var(--adm-teal);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: background .12s;
+}
+.btn-edit-sm:hover { background: rgba(0,168,132,.1); }
+
+/* Badges */
+.badge-deleted {
+    font-size: .7rem;
+    background: #fee2e2;
+    color: var(--adm-danger);
+    padding: .1rem .4rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.badge-edited {
+    font-size: .7rem;
+    background: #fef9c3;
+    color: #854d0e;
+    padding: .1rem .4rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Online dot */
+.dot-online { font-size: .85rem; }
+
+/* ── Edit modal ─────────────────────────────────────────────────── */
+.admin-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-modal[hidden] { display: none; }
+
+.admin-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+}
+
+.admin-modal-box {
+    position: relative;
+    background: var(--adm-surface);
+    border-radius: 12px;
+    padding: 1.75rem 1.75rem 1.25rem;
+    width: min(520px, calc(100vw - 2rem));
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin-modal-close {
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--adm-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+.admin-modal-close:hover { color: var(--adm-text); }
+
+.admin-modal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--adm-text);
+}
+
+.admin-edit-textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: .65rem .9rem;
+    font-family: inherit;
+    font-size: .9rem;
+    color: var(--adm-text);
+    border: 1.5px solid var(--adm-border);
+    border-radius: var(--adm-radius);
+    resize: vertical;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+.admin-edit-textarea:focus {
+    border-color: var(--adm-teal);
+    box-shadow: 0 0 0 3px rgba(0,168,132,.2);
+}
+
+.admin-modal-actions {
+    display: flex;
+    gap: .65rem;
+    justify-content: flex-end;
+}
+
+/* ── Profile modal password section ─────────────────────────────── */
+.profile-pw-section {
+    border: 1.5px solid var(--wa-border-dk, #d1d9e0);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-pw-summary {
+    padding: .65rem .9rem;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    color: var(--wa-teal, #00a884);
+    user-select: none;
+    background: rgba(0,168,132,.06);
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+.profile-pw-summary::-webkit-details-marker { display: none; }
+.profile-pw-summary::before {
+    content: '▶';
+    font-size: .7rem;
+    transition: transform .18s;
+    display: inline-block;
+}
+details[open] .profile-pw-summary::before { transform: rotate(90deg); }
+
+.profile-pw-fields {
+    padding: .9rem .9rem .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    background: #fafafa;
+}
+
+@media (max-width: 600px) {
+    .admin-header { padding: .7rem 1rem; }
+    .admin-main   { padding: 1rem; }
+    .admin-table th,
+    .admin-table td { font-size: .78rem; padding: .45rem .6rem; }
+}
+
+/* ── Register user form in admin panel ────────────────────────────── */
+.admin-register-box {
+    background: var(--surface, #fff);
+    border: 1px solid var(--border, #e9edef);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1.5rem;
+}
+.admin-section-title {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--wa-sec, #3b4a54);
+    margin-bottom: 1rem;
+}
+.admin-register-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    align-items: flex-end;
+}
+.admin-register-row .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    min-width: 140px;
+    flex: 1;
+}
+.admin-register-row .form-group label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--wa-sec, #3b4a54);
+}
+.admin-register-row .form-group input,
+.admin-register-row .form-group select {
+    padding: .45rem .65rem;
+    border: 1px solid var(--border, #e9edef);
+    border-radius: 6px;
+    font-size: .85rem;
+    outline: none;
+    transition: border-color .15s;
+}
+.admin-register-row .form-group input:focus,
+.admin-register-row .form-group select:focus {
+    border-color: var(--wa-teal, #00a884);
+}
+.admin-register-row .form-group--btn {
+    flex: 0 0 auto;
+    align-self: flex-end;
+}
